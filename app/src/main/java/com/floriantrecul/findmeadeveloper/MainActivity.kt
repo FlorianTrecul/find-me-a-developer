@@ -1,6 +1,5 @@
 package com.floriantrecul.findmeadeveloper
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,7 +14,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            window.statusBarColor = Color.TRANSPARENT
+            //window.statusBarColor = Color.TRANSPARENT
             FindMeADeveloppeHome()
         }
     }
@@ -23,7 +22,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun FindMeADeveloppeHome() {
-    FindMeADeveloperTheme {
+    FindMeADeveloperTheme(darkTheme = false) {
         FindMeADeveloppeAppNavigator()
     }
 }
