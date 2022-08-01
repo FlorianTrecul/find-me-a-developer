@@ -13,8 +13,6 @@ data class ProfileDto(
     val profileImageUrl: String,
     @Json(name = "html_url")
     val profileUrl: String,
-    @Json(name = "organizations_url")
-    val organizationsUrl: List<String>,
     @Json(name = "name")
     val name: String,
     @Json(name = "company")

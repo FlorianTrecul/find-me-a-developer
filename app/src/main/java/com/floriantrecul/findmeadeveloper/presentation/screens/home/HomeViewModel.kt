@@ -1,30 +1,92 @@
 package com.floriantrecul.findmeadeveloper.presentation.screens.home
 
-import android.util.Log
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.floriantrecul.findmeadeveloper.BaseViewModel
+import com.floriantrecul.findmeadeveloper.domain.use_case.ProfileUsesCases
+import com.floriantrecul.findmeadeveloper.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor() : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val profileUsesCases: ProfileUsesCases
+) : BaseViewModel<HomeContract.Action, HomeContract.State, HomeContract.Effect>() {
 
-    private val _searchTextState: MutableState<String> = mutableStateOf(value = "")
-    val searchTextState: State<String> = _searchTextState
+    override fun setInitialState() = HomeContract.State(
+        isEmpty = true,
+        isLoading = false,
+        searchText = "",
+        profile = null,
+        isError = false,
+        titleError = null,
+        messageError = null,
+    )
 
-    fun updateSearchTextState(newValue: String) {
-        _searchTextState.value = newValue
-    }
+    override fun handleActions(action: HomeContract.Action) {
 
-    fun onEvent(event: HomeEvent) {
-        when (event) {
-            is HomeEvent.GetProfile -> {
-                Log.d("Searched Text", event.profileUserName)
-                updateSearchTextState("")
-            }
+        when (action) {
+            is HomeContract.Action.SearchText -> updateSearchTextState(action.searchText)
+            is HomeContract.Action.GetProfile -> getProfile()
         }
     }
 
+    private fun updateSearchTextState(searchText: String) {
+        setState {
+            copy(
+                isEmpty = false,
+                isLoading = false,
+                searchText = searchText,
+                isError = false
+            )
+        }
+    }
+
+    private fun getProfile() {
+        viewModelScope.launch(Dispatchers.IO) {
+            profileUsesCases.getProfile(profileUsername = viewState.value.searchText)
+                .onEach { result ->
+                    when (result) {
+                        is Result.Empty -> setState {
+                            copy(
+                                isEmpty = true,
+                                isLoading = false,
+                                isError = false
+                            )
+                        }
+                        is Result.Loading -> setState {
+                            copy(
+                                isEmpty = false,
+                                isLoading = true,
+                                isError = false
+                            )
+                        }
+                        is Result.Success -> {
+                            setState {
+                                copy(
+                                    isEmpty = false,
+                                    isLoading = false,
+                                    profile = result.data,
+                                    isError = false
+                                )
+                            }
+                            setEffect { HomeContract.Effect.DataWasLoaded }
+                        }
+                        is Result.Error -> setState {
+                            copy(
+                                isEmpty = false,
+                                isError = true,
+                                isLoading = false,
+                                titleError = result.title,
+                                messageError = result.message
+                            )
+                        }
+                    }
+                }
+                .launchIn(viewModelScope)
+        }
+    }
 }

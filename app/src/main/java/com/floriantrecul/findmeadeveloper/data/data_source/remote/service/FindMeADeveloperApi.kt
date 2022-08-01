@@ -6,8 +6,8 @@ import retrofit2.http.Path
 
 interface FindMeADeveloperApi {
 
-    @GET("users/{profileUserName}")
+    @GET("users/{profileUsername}")
     suspend fun getProfile(
-        @Path("profileUserName") profileUserName: String
+        @Path("profileUsername") profileUsername: String
     ) : ProfileDto
 }

@@ -23,8 +23,4 @@ object RepositoryModule {
         profileMapper: ProfileMapper
     ): ProfileRepository =
         ProfileRepositoryImpl(findMeADeveloperApi, profileDtoMapper, profileMapper)
-
-    @Singleton
-    @Provides
-    fun provideProfileMapper(): ProfileMapper = ProfileMapper()
 }

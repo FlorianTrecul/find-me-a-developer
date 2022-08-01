@@ -23,7 +23,7 @@ import com.floriantrecul.findmeadeveloper.R
 fun SearchBar(
     text: String,
     onTextChange: (String) -> Unit,
-    onSearchClicked: (String) -> Unit,
+    onSearchClicked: () -> Unit,
 ) {
     Surface(
         modifier = Modifier
@@ -83,7 +83,7 @@ fun SearchBar(
             ),
             keyboardActions = KeyboardActions(
                 onSearch = {
-                    onSearchClicked(text)
+                    onSearchClicked()
                 }
             ),
             colors = TextFieldDefaults.textFieldColors(

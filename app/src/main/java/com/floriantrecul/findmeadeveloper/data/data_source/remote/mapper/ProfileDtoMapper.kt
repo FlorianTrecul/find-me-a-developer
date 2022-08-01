@@ -17,7 +17,6 @@ class ProfileDtoMapper : Mapper<ProfileEntity, ProfileDto?> {
             id = profile.id,
             profileImageUrl = profile.profileImageUrl,
             profileUrl = profile.profileUrl,
-            organizationsUrl = profile.organizationsUrl,
             name = profile.name,
             company = profile.company,
             blog = profile.blog,

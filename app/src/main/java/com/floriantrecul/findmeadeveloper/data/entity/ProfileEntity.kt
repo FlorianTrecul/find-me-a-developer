@@ -5,7 +5,6 @@ data class ProfileEntity(
     val id: Int,
     val profileImageUrl: String,
     val profileUrl: String,
-    val organizationsUrl: List<String>,
     val name: String,
     val company: String? = null,
     val blog: String? = null,
