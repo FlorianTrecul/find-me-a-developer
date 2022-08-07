@@ -2,6 +2,9 @@
     <string name="app_name">FindMeADeveloper</string>
     <string name="toolbar_title">Find Me A Developer !</string>
     <string name="search_bar_placeholder">Search your developer</string>
+    <string name="title_repositories">Repos</string>
+    <string name="title_following">Following</string>
+    <string name="title_followers">Followers</string>
 
     <!-- Error -->
     <string name="error_message_title_unknown_user">Unknown user</string>
