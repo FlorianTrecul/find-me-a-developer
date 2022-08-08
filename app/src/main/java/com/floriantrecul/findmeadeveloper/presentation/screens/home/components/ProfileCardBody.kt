@@ -19,7 +19,7 @@ fun ProfileCardBody(
     profile: Profile
 ) {
     Box(
-        Modifier.background(Color.LightGray)
+        Modifier.background(Color.White)
     ) {
         Column(
             modifier = Modifier

@@ -7,4 +7,40 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="red100">#FFFFCDD2</color>
+    <color name="pink100">#FFF8BBD0</color>
+    <color name="purple100">#FFE1BEE7</color>
+    <color name="deepPurple100">#FFD1C4E9</color>
+    <color name="indigo100">#FFC5CAE9</color>
+    <color name="blue100">#FFBBDEFB</color>
+    <color name="lightBlue100">#FFB3E5FC</color>
+    <color name="cyan100">#FFB2EBF2</color>
+    <color name="teal100">#FFB2DFDB</color>
+    <color name="green100">#FFC8E6C9</color>
+    <color name="lightGreen100">#FFDCEDC8</color>
+    <color name="lime100">#FFF0F4C3</color>
+    <color name="yellow100">#FFFFF9C4</color>
+    <color name="amber100">#FFFFECB3</color>
+    <color name="orange100">#FFFFE0B2</color>
+    <color name="deepOrange100">#FFFFCCBC</color>
+
+    <array name="colors">
+        <item>@color/red100</item>
+        <item>@color/pink100</item>
+        <item>@color/purple100</item>
+        <item>@color/deepPurple100</item>
+        <item>@color/indigo100</item>
+        <item>@color/blue100</item>
+        <item>@color/lightBlue100</item>
+        <item>@color/cyan100</item>
+        <item>@color/teal100</item>
+        <item>@color/green100</item>
+        <item>@color/lightGreen100</item>
+        <item>@color/lime100</item>
+        <item>@color/yellow100</item>
+        <item>@color/amber100</item>
+        <item>@color/orange100</item>
+        <item>@color/deepOrange100</item>
+    </array>
 </resources>

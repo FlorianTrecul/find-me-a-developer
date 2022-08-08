@@ -10,9 +10,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+
 @Composable
-fun ProfileCardHeader() {
-    val color = (Math.random() * 16777215).toInt() or (0xFF shl 24)
+fun ProfileCardHeader(
+    color: Int,
+) {
     Box(
         Modifier
             .background(Color(color))
@@ -24,5 +26,5 @@ fun ProfileCardHeader() {
 @Composable
 @Preview
 fun ProfileCardHeaderPreview() {
-    ProfileCardHeader()
+    ProfileCardHeader(3)
 }

@@ -1,5 +1,6 @@
 package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -8,24 +9,28 @@ import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.floriantrecul.findmeadeveloper.domain.model.Profile
+import com.floriantrecul.findmeadeveloper.util.getColorArray
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ProfileCard(
-    profile: Profile
+    profile: Profile,
+    context: Context = LocalContext.current,
 ) {
     Card(
+        onClick = {},
         modifier = Modifier
-            .padding(16.dp)
+            .padding(top = 16.dp)
             .wrapContentSize(),
         shape = RoundedCornerShape(8.dp),
-        onClick = {}
+        elevation = 10.dp
     ) {
         Column {
-            ProfileCardHeader()
+            ProfileCardHeader(getColorArray(context))
             ProfileCardBody(profile = profile)
         }
     }
