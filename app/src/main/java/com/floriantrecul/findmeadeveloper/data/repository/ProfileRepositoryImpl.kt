@@ -7,9 +7,11 @@ import com.floriantrecul.findmeadeveloper.domain.model.Profile
 import com.floriantrecul.findmeadeveloper.domain.repository.ProfileRepository
 import com.floriantrecul.findmeadeveloper.util.ExceptionError
 import com.floriantrecul.findmeadeveloper.util.Result
+import com.squareup.moshi.JsonDataException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
+import timber.log.Timber
 import java.net.UnknownHostException
 
 class ProfileRepositoryImpl(
@@ -31,6 +33,7 @@ class ProfileRepositoryImpl(
                 )
             )
         } catch (e: Exception) {
+            Timber.d("error e $e")
             val error = when (e) {
                 is HttpException -> Result.Error(
                     title = ExceptionError.HTTP_EXCEPTION.title,
@@ -39,6 +42,10 @@ class ProfileRepositoryImpl(
                 is UnknownHostException -> Result.Error(
                     title = ExceptionError.UNKNOWN_HOST_EXCEPTION.title,
                     message = ExceptionError.UNKNOWN_HOST_EXCEPTION.message
+                )
+                is JsonDataException -> Result.Error(
+                    title = ExceptionError.JSON_DATA_EXCEPTION.title,
+                    message = ExceptionError.JSON_DATA_EXCEPTION.message
                 )
                 else -> Result.Error(
                     title = ExceptionError.ERROR_EXCEPTION.title,

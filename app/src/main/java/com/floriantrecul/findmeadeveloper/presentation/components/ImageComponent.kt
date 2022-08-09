@@ -1,8 +1,7 @@
-package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
+package com.floriantrecul.findmeadeveloper.presentation.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -11,9 +10,9 @@ import coil.request.ImageRequest
 import com.floriantrecul.findmeadeveloper.R
 
 @Composable
-fun ProfileImage(
+fun ImageComponent(
     modifier: Modifier = Modifier,
-    image: String
+    image: Int
 ) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
@@ -21,16 +20,15 @@ fun ProfileImage(
             .crossfade(true)
             .build(),
         contentDescription = stringResource(R.string.app_name),
-        contentScale = ContentScale.Crop,
         modifier = modifier
     )
 }
 
 @Composable
 @Preview
-fun ProfileImagePreview() {
-    ProfileImage(
-        image = "https://avatars.githubusercontent.com/u/17145581?v=4"
+fun ImageComponentPreview() {
+    ImageComponent(
+        image = R.drawable.inspectocat
     )
 }
 

@@ -37,7 +37,7 @@ class HomeViewModel @Inject constructor(
     private fun updateSearchTextState(searchText: String) {
         setState {
             copy(
-                isEmpty = false,
+                isEmpty = true,
                 isLoading = false,
                 searchText = searchText,
                 isError = false

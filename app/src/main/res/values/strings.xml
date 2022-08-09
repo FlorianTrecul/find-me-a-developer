@@ -5,6 +5,7 @@
     <string name="title_repositories">Repos</string>
     <string name="title_following">Following</string>
     <string name="title_followers">Followers</string>
+    <string name="message_search">Start a new Developer search ?</string>
 
     <!-- Error -->
     <string name="error_message_title_unknown_user">Unknown user</string>

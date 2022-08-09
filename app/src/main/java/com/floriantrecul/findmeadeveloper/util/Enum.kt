@@ -11,6 +11,10 @@ enum class ExceptionError(val title: Int, val message: Int) {
         title = R.string.error_message_title_no_network,
         message = R.string.error_message_info_no_network
     ),
+    JSON_DATA_EXCEPTION(
+        title = R.string.error_message_title_unknown_user,
+        message = R.string.error_message_info_unknown_user
+    ),
     ERROR_EXCEPTION(
         title = R.string.error_message_title_unknown,
         message = R.string.error_message_info_unknown

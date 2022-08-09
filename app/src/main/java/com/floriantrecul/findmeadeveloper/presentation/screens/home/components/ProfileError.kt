@@ -17,7 +17,7 @@ import com.floriantrecul.findmeadeveloper.R
 import com.floriantrecul.findmeadeveloper.presentation.components.ImageComponent
 
 @Composable
-fun ProfileEmpty(
+fun ProfileError(
     image: Int,
     text: Int
 ) {
@@ -39,8 +39,8 @@ fun ProfileEmpty(
 
 @Composable
 @Preview
-fun ProfileEmptyPreview() {
-    ProfileEmpty(
+fun ProfileErrorPreview() {
+    ProfileError(
         image = R.drawable.inspectocat,
         text = R.string.message_search
     )

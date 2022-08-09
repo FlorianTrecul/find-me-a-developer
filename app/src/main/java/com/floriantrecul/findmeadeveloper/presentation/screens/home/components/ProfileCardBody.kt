@@ -1,11 +1,14 @@
 package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,6 +32,10 @@ fun ProfileCardBody(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             ProfileImage(
+                modifier = Modifier
+                    .size(128.dp)
+                    .clip(CircleShape)
+                    .border(4.dp, Color.White, CircleShape),
                 image = profile.profileImageUrl
             )
             Spacer(modifier = Modifier.height(8.dp))

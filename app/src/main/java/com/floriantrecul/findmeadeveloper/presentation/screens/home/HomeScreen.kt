@@ -9,7 +9,6 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.floriantrecul.findmeadeveloper.R
@@ -17,11 +16,12 @@ import com.floriantrecul.findmeadeveloper.presentation.components.ProgressBar
 import com.floriantrecul.findmeadeveloper.presentation.components.SearchBar
 import com.floriantrecul.findmeadeveloper.presentation.components.ToolbarAppBar
 import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.ProfileCard
+import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.ProfileEmpty
+import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.ProfileError
 import com.floriantrecul.findmeadeveloper.util.Constants.SIDE_EFFECTS_KEY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @Composable
 fun HomeScreen(
@@ -63,29 +63,21 @@ fun HomeScreen(
                     }
                 )
                 when {
-                    state.isEmpty -> {}
+                    state.isEmpty -> ProfileEmpty(
+                        image = R.drawable.inspectocat,
+                        text = R.string.message_search
+                    )
                     state.isLoading -> ProgressBar()
                     state.isError -> {
                         when (state.isError) {
                             true -> {
                                 if (state.titleError == null || state.messageError == null) return@Scaffold
-                                Timber.d(
-                                    "state H title true ${stringResource(state.titleError)} && message ${
-                                        stringResource(
-                                            state.messageError
-                                        )
-                                    }"
+                                ProfileError(
+                                    image = R.drawable.constructocat2,
+                                    text = state.messageError
                                 )
                             }
-                            false -> {
-                                Timber.d(
-                                    "state H title false ${stringResource(state.titleError!!)} && message ${
-                                        stringResource(
-                                            state.messageError!!
-                                        )
-                                    }"
-                                )
-                            }
+                            false -> Unit
                         }
                     }
                     else -> {
