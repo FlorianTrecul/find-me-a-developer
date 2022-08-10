@@ -24,14 +24,20 @@ fun ProfileCard(
     Card(
         onClick = {},
         modifier = Modifier
-            .padding(top = 16.dp)
-            .wrapContentSize(),
+            .wrapContentSize()
+            .padding(top = 16.dp),
         shape = RoundedCornerShape(8.dp),
         elevation = 10.dp
     ) {
+        val colorState = getColorArray(context)
+
         Column {
-            ProfileCardHeader(getColorArray(context))
+            ProfileCardHeader(color = colorState)
             ProfileCardBody(profile = profile)
+            /*RepositoryCard(
+                profile = profile,
+                color = colorState
+            )*/
         }
     }
 }
@@ -41,7 +47,7 @@ fun ProfileCard(
 @Preview
 fun ProfileCardPreview() {
     ProfileCard(
-        Profile(
+        profile = Profile(
             login = "DraaxKor",
             id = 0,
             profileImageUrl = "",

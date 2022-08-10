@@ -27,6 +27,7 @@ fun ProfileCardBody(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .wrapContentHeight()
                 .padding(start = 16.dp, end = 16.dp)
                 .offset(0.dp, (-64).dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -55,12 +56,12 @@ fun ProfileCardBody(
                     icon = R.drawable.location,
                     location = profile.location ?: ""
                 )
-                Spacer(modifier = Modifier.height(32.dp))
             }
+            Spacer(modifier = Modifier.height(16.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(48.dp)
+                    .wrapContentHeight()
                     .padding(start = 16.dp, end = 16.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceAround,
@@ -86,7 +87,7 @@ fun ProfileCardBody(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(48.dp)
+                    .wrapContentHeight()
                     .padding(start = 16.dp, end = 16.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceAround,
