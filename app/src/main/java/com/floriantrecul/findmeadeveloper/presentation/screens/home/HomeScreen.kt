@@ -22,6 +22,7 @@ import com.floriantrecul.findmeadeveloper.util.Constants.SIDE_EFFECTS_KEY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @Composable
 fun HomeScreen(
@@ -60,6 +61,7 @@ fun HomeScreen(
                     },
                     onSearchClicked = {
                         onActionSent(HomeContract.Action.GetProfile)
+                        onActionSent(HomeContract.Action.GetRepositories)
                     }
                 )
                 when {
@@ -82,7 +84,9 @@ fun HomeScreen(
                     }
                     else -> {
                         state.profile?.let { profile ->
+                            Timber.d("profile $profile")
                             ProfileCard(profile = profile)
+                            Timber.d("profile repositories ${state.repositories}")
                         }
                     }
                 }

@@ -2,6 +2,7 @@ package com.floriantrecul.findmeadeveloper.di
 
 import com.floriantrecul.findmeadeveloper.domain.repository.ProfileRepository
 import com.floriantrecul.findmeadeveloper.domain.use_case.GetProfileUseCase
+import com.floriantrecul.findmeadeveloper.domain.use_case.GetRepositoriesUseCase
 import com.floriantrecul.findmeadeveloper.domain.use_case.ProfileUsesCases
 import dagger.Module
 import dagger.Provides
@@ -19,7 +20,7 @@ object AppModule {
         profileRepository: ProfileRepository
     ): ProfileUsesCases =
         ProfileUsesCases(
-            getProfile = GetProfileUseCase(profileRepository = profileRepository)
+            getProfile = GetProfileUseCase(profileRepository = profileRepository),
+            getRepositories = GetRepositoriesUseCase(profileRepository = profileRepository)
         )
-
 }

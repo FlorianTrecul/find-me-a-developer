@@ -21,6 +21,7 @@ class HomeViewModel @Inject constructor(
         isLoading = false,
         searchText = "",
         profile = null,
+        repositories = emptyList(),
         isError = false,
         titleError = null,
         messageError = null,
@@ -31,6 +32,7 @@ class HomeViewModel @Inject constructor(
         when (action) {
             is HomeContract.Action.SearchText -> updateSearchTextState(action.searchText)
             is HomeContract.Action.GetProfile -> getProfile()
+            is HomeContract.Action.GetRepositories -> getRepositories()
         }
     }
 
@@ -89,4 +91,42 @@ class HomeViewModel @Inject constructor(
                 .launchIn(viewModelScope)
         }
     }
+
+    private fun getRepositories() {
+        viewModelScope.launch(Dispatchers.IO) {
+            profileUsesCases.getRepositories(profileUsername = viewState.value.searchText)
+                .onEach { result ->
+                    when (result) {
+                        is Result.Empty -> setState {
+                            copy(
+                                isEmpty = true,
+                                isLoading = false,
+                                isError = false
+                            )
+                        }
+                        is Result.Loading -> setState {
+                            copy(
+                                isEmpty = false,
+                                isLoading = true,
+                                isError = false
+                            )
+                        }
+                        is Result.Success -> {
+                            setState {
+                                copy(
+                                    isEmpty = false,
+                                    isLoading = false,
+                                    repositories = result.data,
+                                    isError = false
+                                )
+                            }
+                            setEffect { HomeContract.Effect.DataWasLoaded }
+                        }
+                        else -> Unit
+                    }
+                }
+                .launchIn(viewModelScope)
+        }
+    }
+
 }

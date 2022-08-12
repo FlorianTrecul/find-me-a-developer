@@ -1,9 +1,12 @@
 package com.floriantrecul.findmeadeveloper.data.repository
 
 import com.floriantrecul.findmeadeveloper.data.data_source.remote.mapper.ProfileDtoMapper
+import com.floriantrecul.findmeadeveloper.data.data_source.remote.mapper.RepositoryDtoMapper
 import com.floriantrecul.findmeadeveloper.data.data_source.remote.service.FindMeADeveloperApi
 import com.floriantrecul.findmeadeveloper.data.mapper.ProfileMapper
+import com.floriantrecul.findmeadeveloper.data.mapper.RepositoryMapper
 import com.floriantrecul.findmeadeveloper.domain.model.Profile
+import com.floriantrecul.findmeadeveloper.domain.model.Repository
 import com.floriantrecul.findmeadeveloper.domain.repository.ProfileRepository
 import com.floriantrecul.findmeadeveloper.util.ExceptionError
 import com.floriantrecul.findmeadeveloper.util.Result
@@ -17,7 +20,9 @@ import java.net.UnknownHostException
 class ProfileRepositoryImpl(
     private val findMeADeveloperApi: FindMeADeveloperApi,
     private val profileDtoMapper: ProfileDtoMapper,
-    private val profileMapper: ProfileMapper
+    private val profileMapper: ProfileMapper,
+    private val repositoryDtoMapper: RepositoryDtoMapper,
+    private val repositoryMapper: RepositoryMapper
 ) : ProfileRepository {
 
     override suspend fun getProfile(profileUsername: String): Flow<Result<Profile>> = flow {
@@ -53,6 +58,18 @@ class ProfileRepositoryImpl(
                 )
             }
             emit(error)
+        }
+    }
+
+    override suspend fun getRepositories(profileUsername: String): Flow<Result<List<Repository>>> = flow {
+        try {
+            val response = findMeADeveloperApi.getRepositories(profileUsername = profileUsername)
+            val responses = response.map { repositoryDto ->
+                repositoryMapper.mapFromEntity(repositoryDtoMapper.mapToEntity(repositoryDto))
+            }
+            emit(Result.Success(responses))
+        } catch (e: Exception) {
+            emit(Result.Success(emptyList()))
         }
     }
 }
