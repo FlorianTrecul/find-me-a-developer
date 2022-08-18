@@ -31,8 +31,7 @@ class HomeViewModel @Inject constructor(
 
         when (action) {
             is HomeContract.Action.SearchText -> updateSearchTextState(action.searchText)
-            is HomeContract.Action.GetProfile -> getProfile()
-            is HomeContract.Action.GetRepositories -> getRepositories()
+            is HomeContract.Action.GetProfileWithRepositories -> getProfileWithRepositories()
         }
     }
 
@@ -41,92 +40,94 @@ class HomeViewModel @Inject constructor(
             copy(
                 isEmpty = true,
                 isLoading = false,
+                profile = null,
                 searchText = searchText,
                 isError = false
             )
         }
     }
 
-    private fun getProfile() {
-        viewModelScope.launch(Dispatchers.IO) {
-            profileUsesCases.getProfile(profileUsername = viewState.value.searchText)
-                .onEach { result ->
-                    when (result) {
-                        is Result.Empty -> setState {
-                            copy(
-                                isEmpty = true,
-                                isLoading = false,
-                                isError = false
-                            )
-                        }
-                        is Result.Loading -> setState {
-                            copy(
-                                isEmpty = false,
-                                isLoading = true,
-                                isError = false
-                            )
-                        }
-                        is Result.Success -> {
-                            setState {
-                                copy(
-                                    isEmpty = false,
-                                    isLoading = false,
-                                    profile = result.data,
-                                    isError = false
-                                )
-                            }
-                            setEffect { HomeContract.Effect.DataWasLoaded }
-                        }
-                        is Result.Error -> setState {
-                            copy(
-                                isEmpty = false,
-                                isError = true,
-                                isLoading = false,
-                                titleError = result.title,
-                                messageError = result.message
-                            )
-                        }
-                    }
-                }
-                .launchIn(viewModelScope)
-        }
+    private fun getProfileWithRepositories() = viewModelScope.launch(Dispatchers.IO) {
+        getProfile()
+        getRepositories()
     }
 
-    private fun getRepositories() {
-        viewModelScope.launch(Dispatchers.IO) {
-            profileUsesCases.getRepositories(profileUsername = viewState.value.searchText)
-                .onEach { result ->
-                    when (result) {
-                        is Result.Empty -> setState {
-                            copy(
-                                isEmpty = true,
-                                isLoading = false,
-                                isError = false
-                            )
-                        }
-                        is Result.Loading -> setState {
+    private suspend fun getProfile() {
+        profileUsesCases.getProfile(profileUsername = viewState.value.searchText)
+            .onEach { result ->
+                when (result) {
+                    is Result.Empty -> setState {
+                        copy(
+                            isEmpty = true,
+                            isLoading = false,
+                            isError = false
+                        )
+                    }
+                    is Result.Loading -> setState {
+                        copy(
+                            isEmpty = false,
+                            isLoading = true,
+                            isError = false
+                        )
+                    }
+                    is Result.Success -> {
+                        setState {
                             copy(
                                 isEmpty = false,
-                                isLoading = true,
+                                isLoading = false,
+                                profile = result.data,
                                 isError = false
                             )
                         }
-                        is Result.Success -> {
-                            setState {
-                                copy(
-                                    isEmpty = false,
-                                    isLoading = false,
-                                    repositories = result.data,
-                                    isError = false
-                                )
-                            }
-                            setEffect { HomeContract.Effect.DataWasLoaded }
-                        }
-                        else -> Unit
+                        setEffect { HomeContract.Effect.DataWasLoaded }
+                    }
+                    is Result.Error -> setState {
+                        copy(
+                            isEmpty = false,
+                            isError = true,
+                            isLoading = false,
+                            titleError = result.title,
+                            messageError = result.message
+                        )
                     }
                 }
-                .launchIn(viewModelScope)
-        }
+            }
+            .launchIn(viewModelScope)
+    }
+
+    private suspend fun getRepositories() {
+        profileUsesCases.getRepositories(profileUsername = viewState.value.searchText)
+            .onEach { result ->
+                when (result) {
+                    is Result.Empty -> setState {
+                        copy(
+                            isEmpty = true,
+                            isLoading = false,
+                            isError = false
+                        )
+                    }
+                    is Result.Loading -> setState {
+                        copy(
+                            isEmpty = false,
+                            isLoading = true,
+                            isError = false
+                        )
+                    }
+                    is Result.Success -> {
+                        setState {
+                            copy(
+                                isEmpty = false,
+                                isLoading = false,
+                                repositories = result.data,
+                                isError = false
+                            )
+                        }
+                        setEffect { HomeContract.Effect.DataWasLoaded }
+                    }
+                    else -> Unit
+                }
+            }
+            .launchIn(viewModelScope)
     }
 
 }

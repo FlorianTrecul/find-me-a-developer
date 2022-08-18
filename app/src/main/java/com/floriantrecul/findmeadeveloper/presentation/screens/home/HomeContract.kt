@@ -10,8 +10,7 @@ class HomeContract {
 
     sealed class Action : ViewAction {
         data class SearchText(val searchText: String) : Action()
-        object GetProfile : Action()
-        object GetRepositories : Action()
+        object GetProfileWithRepositories : Action()
     }
 
     data class State(

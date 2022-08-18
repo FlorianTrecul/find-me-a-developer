@@ -6,12 +6,13 @@
     <string name="title_following">Following</string>
     <string name="title_followers">Followers</string>
     <string name="message_search">Start a new Developer search ?</string>
+    <string name="unknown_repository">Repository not found :(</string>
 
     <!-- Error -->
     <string name="error_message_title_unknown_user">Unknown user</string>
     <string name="error_message_title_unknown">Error</string>
     <string name="error_message_title_no_network">Network error</string>
-    <string name="error_message_info_unknown_user">User not found :(.</string>
+    <string name="error_message_info_unknown_user">User not found :(</string>
     <string name="error_message_info_unknown">An unknown error has occurred.</string>
     <string name="error_message_info_no_network">You don\'t seem to have an internet connection. Check your network and try again.</string>
 </resources>

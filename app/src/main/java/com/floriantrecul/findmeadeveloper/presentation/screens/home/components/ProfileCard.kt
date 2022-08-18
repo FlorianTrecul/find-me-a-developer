@@ -7,18 +7,23 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.floriantrecul.findmeadeveloper.R
 import com.floriantrecul.findmeadeveloper.domain.model.Profile
+import com.floriantrecul.findmeadeveloper.domain.model.Repository
 import com.floriantrecul.findmeadeveloper.util.getColorArray
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ProfileCard(
     profile: Profile,
+    repositories: List<Repository>,
     context: Context = LocalContext.current,
 ) {
     Card(
@@ -34,10 +39,23 @@ fun ProfileCard(
         Column {
             ProfileCardHeader(color = colorState)
             ProfileCardBody(profile = profile)
-            /*RepositoryCard(
+            RepositoryCard(
                 profile = profile,
+                repositoriesList = {
+                    when (repositories.isEmpty()) {
+                        true -> Text(text = stringResource(id = R.string.unknown_repository))
+                        false -> {
+                            RepositoriesList(
+                                repositories = repositories
+                            )
+                        }
+                    }
+                    RepositoriesList(
+                        repositories = repositories
+                    )
+                },
                 color = colorState
-            )*/
+            )
         }
     }
 }
@@ -63,6 +81,7 @@ fun ProfileCardPreview() {
             followers = 1234,
             following = 123,
             createdAt = ""
-        )
+        ),
+        repositories = emptyList()
     )
 }

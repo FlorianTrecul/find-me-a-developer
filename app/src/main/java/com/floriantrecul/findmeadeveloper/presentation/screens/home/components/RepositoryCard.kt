@@ -26,6 +26,7 @@ import com.floriantrecul.findmeadeveloper.domain.model.Profile
 fun RepositoryCard(
     modifier: Modifier = Modifier,
     profile: Profile,
+    repositoriesList: @Composable () -> Unit,
     color: Int
 ) {
     var expandedState by remember { mutableStateOf(false) }
@@ -78,7 +79,7 @@ fun RepositoryCard(
                 }
             }
             if (expandedState) {
-                Text(text = "jdjdjdjdjdjdj")
+                repositoriesList()
             }
         }
     }
@@ -107,6 +108,7 @@ fun RepositoryCardPreview() {
             following = 123,
             createdAt = ""
         ),
+        repositoriesList = { },
         color = 3
     )
 }

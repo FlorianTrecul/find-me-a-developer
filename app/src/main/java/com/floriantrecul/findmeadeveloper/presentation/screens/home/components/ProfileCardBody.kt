@@ -54,7 +54,7 @@ fun ProfileCardBody(
             if (profile.location.isVisible()) {
                 ProfileLocation(
                     icon = R.drawable.location,
-                    location = profile.location ?: ""
+                    location = profile.location!!
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -98,14 +98,14 @@ fun ProfileCardBody(
                 )
                 if (profile.email.isVisible()) {
                     ProfileSocialNetworkIcon(
-                        url = profile.email ?: "",
+                        url = profile.email!!,
                         icon = R.drawable.email,
                         isEmail = true
                     )
                 }
                 if (profile.blog.isVisible()) {
                     ProfileSocialNetworkIcon(
-                        url = profile.blog ?: "",
+                        url = profile.blog!!,
                         icon = R.drawable.web
                     )
                 }

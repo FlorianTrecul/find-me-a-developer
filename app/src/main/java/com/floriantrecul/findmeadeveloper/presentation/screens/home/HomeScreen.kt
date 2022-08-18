@@ -60,8 +60,7 @@ fun HomeScreen(
                         onActionSent(HomeContract.Action.SearchText(searchText = it))
                     },
                     onSearchClicked = {
-                        onActionSent(HomeContract.Action.GetProfile)
-                        onActionSent(HomeContract.Action.GetRepositories)
+                        onActionSent(HomeContract.Action.GetProfileWithRepositories)
                     }
                 )
                 when {
@@ -85,7 +84,7 @@ fun HomeScreen(
                     else -> {
                         state.profile?.let { profile ->
                             Timber.d("profile $profile")
-                            ProfileCard(profile = profile)
+                            ProfileCard(profile = profile, repositories = state.repositories)
                             Timber.d("profile repositories ${state.repositories}")
                         }
                     }
