@@ -6,23 +6,23 @@ buildscript {
 
         // Google libraries dependencies
         ktxVersion = "1.8.0"
-        activityComposeVersion = "1.5.0"
-        appCompatVersion = "1.4.2"
+        activityComposeVersion = "1.5.1"
+        appCompatVersion = "1.5.0"
         composeVersion = "1.1.1"
         constraintLayoutComposeVersion = "1.0.1"
         dataStoreVersion = "1.0.0"
         daggerHiltVersion = "2.41"
         daggerHiltNavigationComposeVersion = "1.0.0"
         daggerHiltCompilerVersion = "1.0.0"
-        lifecycleVersion = "2.5.0"
+        lifecycleVersion = "2.5.1"
         materialVersion = "1.6.1"
-        navigationComposeVersion = "2.5.0"
+        navigationComposeVersion = "2.5.1"
 
         // Party libraries dependencies
         coilComposeVersion = "2.1.0"
-        coroutinesVersion = "1.6.2"
+        coroutinesVersion = "1.6.3"
         moshiVersion = "1.13.0"
-        okhttpLoggingInterceptorVersion = "5.0.0-alpha.3"
+        okhttpLoggingInterceptorVersion = "5.0.0-alpha.6"
         retrofitVersion = "2.9.0"
         timberVersion = "5.0.1"
 
