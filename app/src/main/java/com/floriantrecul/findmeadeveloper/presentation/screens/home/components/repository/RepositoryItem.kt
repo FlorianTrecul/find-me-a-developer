@@ -1,4 +1,4 @@
-package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
+package com.floriantrecul.findmeadeveloper.presentation.screens.home.components.repository
 
 import android.content.Context
 import androidx.compose.foundation.clickable

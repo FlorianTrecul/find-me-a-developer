@@ -1,4 +1,4 @@
-package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
+package com.floriantrecul.findmeadeveloper.presentation.screens.home.components.repository
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size

@@ -14,7 +14,7 @@ data class ProfileDto(
     @Json(name = "html_url")
     val profileUrl: String,
     @Json(name = "name")
-    val name: String,
+    val name: String? = null ,
     @Json(name = "company")
     val company: String? = null,
     @Json(name = "blog")

@@ -1,4 +1,4 @@
-package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
+package com.floriantrecul.findmeadeveloper.presentation.screens.home.components.profile
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size

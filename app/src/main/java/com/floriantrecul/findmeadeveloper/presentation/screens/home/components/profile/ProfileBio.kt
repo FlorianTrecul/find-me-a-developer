@@ -1,4 +1,4 @@
-package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
+package com.floriantrecul.findmeadeveloper.presentation.screens.home.components.profile
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text

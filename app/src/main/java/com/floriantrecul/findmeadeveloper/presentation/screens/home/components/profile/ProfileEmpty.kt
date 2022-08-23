@@ -1,4 +1,4 @@
-package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
+package com.floriantrecul.findmeadeveloper.presentation.screens.home.components.profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,7 +17,7 @@ import com.floriantrecul.findmeadeveloper.R
 import com.floriantrecul.findmeadeveloper.presentation.components.ImageComponent
 
 @Composable
-fun ProfileError(
+fun ProfileEmpty(
     image: Int,
     text: Int
 ) {
@@ -39,8 +39,8 @@ fun ProfileError(
 
 @Composable
 @Preview
-fun ProfileErrorPreview() {
-    ProfileError(
+fun ProfileEmptyPreview() {
+    ProfileEmpty(
         image = R.drawable.inspectocat,
         text = R.string.message_search
     )

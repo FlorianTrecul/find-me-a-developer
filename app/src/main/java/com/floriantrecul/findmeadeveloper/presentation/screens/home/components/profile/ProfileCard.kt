@@ -1,4 +1,4 @@
-package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
+package com.floriantrecul.findmeadeveloper.presentation.screens.home.components.profile
 
 import android.content.Context
 import androidx.compose.foundation.layout.Column
@@ -7,16 +7,20 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.floriantrecul.findmeadeveloper.R
 import com.floriantrecul.findmeadeveloper.domain.model.Profile
 import com.floriantrecul.findmeadeveloper.domain.model.Repository
+import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.repository.RepositoriesList
+import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.repository.RepositoryCard
 import com.floriantrecul.findmeadeveloper.util.getColorArray
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -43,7 +47,12 @@ fun ProfileCard(
                 profile = profile,
                 repositoriesList = {
                     when (repositories.isEmpty()) {
-                        true -> Text(text = stringResource(id = R.string.unknown_repository))
+                        true -> Text(
+                            text = stringResource(id = R.string.unknown_repository),
+                            modifier = Modifier.padding(10.dp),
+                            fontSize = MaterialTheme.typography.h6.fontSize,
+                            textAlign = TextAlign.Center
+                        )
                         false -> {
                             RepositoriesList(
                                 repositories = repositories

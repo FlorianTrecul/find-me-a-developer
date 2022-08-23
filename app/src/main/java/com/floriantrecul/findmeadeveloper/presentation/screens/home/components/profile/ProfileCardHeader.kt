@@ -1,4 +1,4 @@
-package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
+package com.floriantrecul.findmeadeveloper.presentation.screens.home.components.profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,7 +19,7 @@ fun ProfileCardHeader(
         Modifier
             .background(Color(color))
             .fillMaxWidth()
-            .height(150.dp)
+            .height(125.dp)
     )
 }
 

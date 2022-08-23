@@ -15,9 +15,9 @@ import com.floriantrecul.findmeadeveloper.R
 import com.floriantrecul.findmeadeveloper.presentation.components.ProgressBar
 import com.floriantrecul.findmeadeveloper.presentation.components.SearchBar
 import com.floriantrecul.findmeadeveloper.presentation.components.ToolbarAppBar
-import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.ProfileCard
-import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.ProfileEmpty
-import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.ProfileError
+import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.profile.ProfileCard
+import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.profile.ProfileEmpty
+import com.floriantrecul.findmeadeveloper.presentation.screens.home.components.profile.ProfileError
 import com.floriantrecul.findmeadeveloper.util.Constants.SIDE_EFFECTS_KEY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -73,6 +73,7 @@ fun HomeScreen(
                         when (state.isError) {
                             true -> {
                                 if (state.titleError == null || state.messageError == null) return@Scaffold
+                                Timber.d("profile error ${state.titleError} && ${state.messageError}")
                                 ProfileError(
                                     image = R.drawable.constructocat2,
                                     text = state.messageError

@@ -1,4 +1,4 @@
-package com.floriantrecul.findmeadeveloper.presentation.screens.home.components
+package com.floriantrecul.findmeadeveloper.presentation.screens.home.components.profile
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -39,25 +39,27 @@ fun ProfileCardBody(
                     .border(4.dp, Color.White, CircleShape),
                 image = profile.profileImageUrl
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            ProfileUserName(
-                userName = profile.name,
-                fontSize = MaterialTheme.typography.h4.fontSize,
-                fontWeight = FontWeight.Bold,
-            )
+            Spacer(modifier = Modifier.height(4.dp))
+            if (profile.name.isVisible()) {
+                ProfileUserName(
+                    userName = profile.name!!,
+                    fontSize = MaterialTheme.typography.h4.fontSize,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
             ProfileUserName(
                 userName = profile.login,
                 fontSize = MaterialTheme.typography.h6.fontSize,
                 fontWeight = FontWeight.Normal,
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             if (profile.location.isVisible()) {
                 ProfileLocation(
                     icon = R.drawable.location,
                     location = profile.location!!
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -79,10 +81,10 @@ fun ProfileCardBody(
                     numberText = profile.followers
                 )
             }
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             if (profile.bio.isVisible()) {
                 ProfileBio(bio = profile.bio!!)
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(16.dp))
             }
             Row(
                 modifier = Modifier

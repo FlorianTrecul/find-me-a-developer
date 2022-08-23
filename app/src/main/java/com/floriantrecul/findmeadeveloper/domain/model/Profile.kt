@@ -5,7 +5,7 @@ data class Profile(
     val id: Int,
     val profileImageUrl: String,
     val profileUrl: String,
-    val name: String,
+    val name: String? = null,
     val company: String? = null,
     val blog: String? = null,
     val location: String? = null,
